@@ -25,7 +25,8 @@ SeizeIT2 is **not** included. Download it from its public source (see the paper'
 | Folder / file | Paper |
 |---|---|
 | `results/mlp_5seeds/` | Table 1 (MLP, five seeds) |
-| `results/lr_5seeds/` | Tables 2–4 and Sect. 6.2 (logistic regression, five seeds) |
+| `results/lr_full_horizon/` | Table 2 and Table 3 rows for non-private, fixed, uniform, ceiling-only and adaptive noise (logistic regression, five seeds, full-horizon calibration) |
+| `results/lr_5seeds/` | Table 2 hybrid and size-only controls; Table 4 and Sect. 6.2 (logistic regression, five seeds; same adaptive, ceiling-only, uniform and non-private values as above) |
 | `results/lopo/sub-XXX/` | Table 6 (one folder per held-out patient; `results.csv`, `summary.csv`, `setup.json`) |
 | `results/lopo_aggregate.txt` | Table 6 and the LOPO statistics, generated with `aggregate_lopo.py --from-csv` |
 
@@ -38,7 +39,8 @@ Per-seed prediction files (`preds/*.npz`) are **not** published (they are in `.g
 ```bash
 python check_dp_accounting.py                                       # accountant cross-check (needs dp_accounting, opacus)
 python aggregate_lopo.py results/lopo --from-csv                    # Table 6 and LOPO statistics
-python posthoc_pairs.py results/lr_5seeds/results.csv               # Table 4 (full-precision paired comparisons)
+python posthoc_pairs.py results/lr_5seeds/results.csv               # Table 4
+python posthoc_pairs.py results/lr_full_horizon/results.csv --pairs adaptive:uniform_cal,adaptive:ceiling_only   # cross-check (full-precision paired comparisons)
 ```
 
 ### B. With SeizeIT2 (rerunning training)
@@ -54,9 +56,14 @@ python ablation_suite.py --help               # all options
 Experiment commands. Each run's exact arguments are stored in its `setup.json`; check that file if anything differs.
 
 ```bash
-# Tables 2-4 (logistic regression, five seeds, held-out sub-001 and sub-009)
+# Table 2 (non-private, fixed, uniform, ceiling-only, adaptive; logistic regression, five seeds, held-out sub-001 and sub-009)
 python ablation_suite.py --arch linear --scalings global --seeds 5 \
-  --configs nonprivate,fixed,uniform_cal,ceiling_only,adaptive,hybrid,size_only \
+  --configs nonprivate,fixed,uniform_cal,ceiling_only,adaptive \
+  --out-dir results/lr_full_horizon
+
+# Tables 2 (controls) and 4 (hybrid and size-only controls plus the comparison configurations)
+python ablation_suite.py --arch linear --scalings global --seeds 5 \
+  --configs nonprivate,uniform_cal,ceiling_only,adaptive,hybrid,size_only \
   --out-dir results/lr_5seeds
 
 # Table 1 (MLP, five seeds)
