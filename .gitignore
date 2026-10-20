@@ -3,3 +3,4 @@
 *.npz
 seizeit2_*/
 __pycache__/
+fresh_env/
