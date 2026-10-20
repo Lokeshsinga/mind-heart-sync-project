@@ -29,6 +29,8 @@ python aggregate_lopo.py <root_dir>           # root_dir holds one sub-folder pe
 python check_dp_accounting.py                 # accountant cross-checks
 ```
 
+**LOPO statistics** (`aggregate_lopo.py`): the resampling unit is the held-out patient; each patient contributes one AUC per configuration (seeds averaged first) with equal weight. Confidence intervals are percentile bootstraps over patients (20 000 resamples); paired differences use an exact two-sided sign-flip test over all 2^n sign patterns. Zero differences stay in the enumeration and are counted as neither better nor worse. Patients with fewer than two positives or two negatives are excluded.
+
 The leave-one-patient-out results in the paper were produced by running `ablation_suite.py` once per held-out patient (via `--test-patients`) with logistic regression, global scaling, and two to five seeds per fold, then aggregating with `aggregate_lopo.py`.
 
 ## Environment
