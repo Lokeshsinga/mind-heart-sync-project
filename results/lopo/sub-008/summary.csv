@@ -1,0 +1,10 @@
+,,total_runs,completed_runs,failed_runs,ceiling_compliant_runs,ceiling_failure_runs,eps_max,eps_max,acc,acc,prec,prec,recall,recall,spec,spec,f1,f1,auc,auc,ap,ap
+,,,,,,,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
+scaling,config,,,,,,,,,,,,,,,,,,,,,
+global,adaptive,2,2,0,2,0,50.0,0.0,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.89,0.014,0.811,0.021
+global,ceiling_only,2,2,0,2,0,50.0,0.0,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.89,0.014,0.811,0.021
+global,hybrid,2,2,0,2,0,50.0,0.0,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.9,0.028,0.825,0.04
+global,nonprivate,2,2,0,N/A,N/A,inf,,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.8,0.028,0.631,0.094
+global,size_fix,2,2,0,2,0,50.0,0.0,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.88,0.0,0.796,0.0
+global,size_only,2,2,0,2,0,50.0,0.0,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.88,0.0,0.796,0.0
+global,uniform_cal,2,2,0,2,0,50.0,0.0,0.733,0.0,0.556,0.0,1.0,0.0,0.6,0.0,0.714,0.0,0.9,0.028,0.825,0.04
