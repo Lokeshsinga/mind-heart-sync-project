@@ -1,0 +1,53 @@
+{
+ "uniform_sigma": 1.4643959063952026,
+ "sensitivity": {
+  "sub-002": 0.40606350681602016,
+  "sub-003": 2.7391562200536343,
+  "sub-004": 2.1776431146701767,
+  "sub-005": 1.9103039666923416,
+  "sub-006": 5.518866666543112,
+  "sub-007": 2.853183075270586,
+  "sub-008": 3.358909628768433
+ },
+ "adaptive_k": 1.4523151211516052,
+ "adaptive_sigma_rel": {
+  "sub-002": 0.7,
+  "sub-003": 1.008318294750198,
+  "sub-004": 0.8525997089011744,
+  "sub-005": 0.7784613251910338,
+  "sub-006": 1.5,
+  "sub-007": 1.0399401758300162,
+  "sub-008": 1.1801880578152573
+ },
+ "adaptive_sigma_cal": {
+  "sub-002": 1.0166205848061236,
+  "sub-003": 1.464395906399514,
+  "sub-004": 1.2382434495266326,
+  "sub-005": 1.1305711538066554,
+  "sub-006": 2.178472681727408,
+  "sub-007": 1.5103208424509915,
+  "sub-008": 1.714004962167643
+ },
+ "arch": "linear",
+ "seeds": 5,
+ "rounds": 10,
+ "epochs": 5,
+ "configs": [
+  "nonprivate",
+  "fixed",
+  "uniform_cal",
+  "ceiling_only",
+  "adaptive"
+ ],
+ "scalings": [
+  "global"
+ ],
+ "privacy_ceiling": 50.0,
+ "target_delta": 1e-05,
+ "dp_guarantee_level": "sample_level_only",
+ "data_dependent_unaccounted_ops": [
+  "class_weighting_n_neg_div_n_pos",
+  "feature_standardization_mean_std",
+  "mahalanobis_sensitivity_scoring_and_noise_mapping"
+ ]
+}
