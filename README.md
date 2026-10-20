@@ -33,6 +33,20 @@ python check_dp_accounting.py                 # accountant cross-checks
 
 The leave-one-patient-out results in the paper were produced by running `ablation_suite.py` once per held-out patient (via `--test-patients`) with logistic regression, global scaling, and two to five seeds per fold, then aggregating with `aggregate_lopo.py`.
 
+## Results
+
+Result files are small CSV/JSON/text files; predictions (`preds/*.npz`) are not included. Each folder contains `results.csv` (one row per run), `summary.csv` and `setup.json` (the exact arguments and calibrated noise multipliers).
+
+| Folder | Paper | Content |
+|---|---|---|
+| `results/mlp_5seeds` | Table 1 | MLP, Poisson rerun, five seeds, held-out sub-001 and sub-009, non-private / fixed σ = 1.0 / uniform (ε ≤ 50), global and local scaling |
+| `results/seizeit2_ablation_linear` | Tables 2–4 and Sect. 6.2 | Logistic regression, full-horizon calibration, five seeds, six configurations |
+| `results/seizeit2_lopo/sub-XXX` | Table 6 | One leave-one-patient-out fold per held-out patient |
+| `results/lopo_aggregate.txt` | Table 6 | Output of `aggregate_lopo.py` (mean AUC, patient-level bootstrap CIs, paired sign-flip tests) |
+
+Table 1 can be regenerated with:
+python ablation_suite.py --arch mlp --seeds 5 --configs nonprivate,fixed,uniform_cal --scalings global,local --test-patients sub-001,sub-009 --out-dir <output folder>
+
 ## Environment
 
 Python 3.14. Main packages: `numpy`, `pandas`, `scipy`, `scikit-learn`, `torch`, `mne`. The accountant cross-check additionally uses `dp_accounting` and `opacus`.
